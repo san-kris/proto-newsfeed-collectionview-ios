@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		AA36334229D32DBA004E01C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36334129D32DBA004E01C5 /* AppDelegate.swift */; };
 		AA36334429D32DBA004E01C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36334329D32DBA004E01C5 /* SceneDelegate.swift */; };
-		AA36334629D32DBA004E01C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36334529D32DBA004E01C5 /* ViewController.swift */; };
 		AA36334929D32DBA004E01C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA36334729D32DBA004E01C5 /* Main.storyboard */; };
 		AA36334B29D32DBC004E01C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA36334A29D32DBC004E01C5 /* Assets.xcassets */; };
 		AA36334E29D32DBC004E01C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA36334C29D32DBC004E01C5 /* LaunchScreen.storyboard */; };
+		AA36335629D32F13004E01C5 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36335529D32F13004E01C5 /* NewsFeedViewController.swift */; };
+		AA36335829D33700004E01C5 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36335729D33700004E01C5 /* FeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA36333E29D32DBA004E01C5 /* proto-newsfeed-collectionview-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "proto-newsfeed-collectionview-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA36334129D32DBA004E01C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA36334329D32DBA004E01C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA36334529D32DBA004E01C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA36334829D32DBA004E01C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA36334A29D32DBC004E01C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA36334D29D32DBC004E01C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA36334F29D32DBC004E01C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA36335529D32F13004E01C5 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
+		AA36335729D33700004E01C5 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				AA36334129D32DBA004E01C5 /* AppDelegate.swift */,
 				AA36334329D32DBA004E01C5 /* SceneDelegate.swift */,
-				AA36334529D32DBA004E01C5 /* ViewController.swift */,
+				AA36335529D32F13004E01C5 /* NewsFeedViewController.swift */,
 				AA36334729D32DBA004E01C5 /* Main.storyboard */,
 				AA36334A29D32DBC004E01C5 /* Assets.xcassets */,
 				AA36334C29D32DBC004E01C5 /* LaunchScreen.storyboard */,
 				AA36334F29D32DBC004E01C5 /* Info.plist */,
+				AA36335729D33700004E01C5 /* FeedCell.swift */,
 			);
 			path = "proto-newsfeed-collectionview-ios";
 			sourceTree = "<group>";
@@ -138,9 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA36334629D32DBA004E01C5 /* ViewController.swift in Sources */,
 				AA36334229D32DBA004E01C5 /* AppDelegate.swift in Sources */,
+				AA36335829D33700004E01C5 /* FeedCell.swift in Sources */,
 				AA36334429D32DBA004E01C5 /* SceneDelegate.swift in Sources */,
+				AA36335629D32F13004E01C5 /* NewsFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
