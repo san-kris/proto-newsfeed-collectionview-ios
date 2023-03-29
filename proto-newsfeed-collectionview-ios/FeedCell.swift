@@ -9,12 +9,21 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
-    private let profileImageView: UIImageView =  {
+    lazy private var profileImageView: UIImageView =  {
         let iv = UIImageView(image: UIImage(systemName: "person.circle"))
         iv.contentMode = UIView.ContentMode.scaleAspectFit
         iv.backgroundColor = .red
+        // create a tap gesture recognizer and add it to profile image
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapProfile))
+        iv.addGestureRecognizer(tapGestureRecognizer)
+        iv.isUserInteractionEnabled = true
         return iv
     }()
+    
+    // making profile image interactable
+    @objc private func handleTapProfile(gesture: UITapGestureRecognizer){
+        print("Profile Image Tapped")
+    }
     
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -67,11 +76,53 @@ class FeedCell: UICollectionViewCell {
         return iv
     }()
     
+    let summaryLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .darkGray
+        label.text = "100 Likes   10 Comments"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.backgroundColor = .yellow
+        return label
+    }()
+    
+    lazy var likeButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        let attributedString = NSAttributedString(string: "Like", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+        button.setAttributedTitle(attributedString, for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(handleLike), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    
+    @objc private func handleLike(sender: UIButton){
+        print("Like button pressed")
+    }
+    
+    lazy var commentButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        let attributedString = NSAttributedString(string: "Comment", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+        button.setAttributedTitle(attributedString, for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(handleComment), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    
+    @objc private func handleComment(sender: UIButton){
+        print("Comment button pressed")
+    }
+
+    
+    lazy var feedActionStackView : UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [likeButton, commentButton])
+        sv.backgroundColor = .gray
+        sv.axis = NSLayoutConstraint.Axis.horizontal
+        sv.distribution = UIStackView.Distribution.fillEqually
+        return sv
+    }()
+    
     lazy private var cellStackView: UIStackView = {
         
-        let grayView = UIView()
-        grayView.backgroundColor = .gray
-        let sv = UIStackView(arrangedSubviews: [profileStackView, descriptionLabel, feedImage])
+        let yellowView = UIView()
+        yellowView.backgroundColor = .yellow
+        let sv = UIStackView(arrangedSubviews: [profileStackView, descriptionLabel, feedImage, summaryLabel, feedActionStackView])
         sv.axis = NSLayoutConstraint.Axis.vertical
         return sv
     }()
@@ -114,6 +165,11 @@ class FeedCell: UICollectionViewCell {
 //        descriptionLabel.trailingAnchor.constraint(equalTo: cellStackView.trailingAnchor, constant: 0).isActive = true
         descriptionLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
+        summaryLabel.translatesAutoresizingMaskIntoConstraints = false
+        summaryLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        feedActionStackView.translatesAutoresizingMaskIntoConstraints = false
+        feedActionStackView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
     }
 
