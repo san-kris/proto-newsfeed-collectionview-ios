@@ -9,6 +9,15 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
+    var post: Post? {
+        didSet{
+            print("Post was set")
+            guard let post else {return}
+            nameLabel.text = post.name
+            descriptionTextView.text = post.description
+        }
+    }
+    
     lazy private var profileImageView: UIImageView =  {
         let iv = UIImageView(image: UIImage(systemName: "person.circle"))
         iv.contentMode = UIView.ContentMode.scaleAspectFit
@@ -60,13 +69,14 @@ class FeedCell: UICollectionViewCell {
         return sv
     }()
     
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "This is a description of the profile"
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .black
-        label.backgroundColor = .yellow
-        return label
+    private let descriptionTextView: UITextView = {
+        let tv = UITextView()
+        tv.text = "This is a description of the profile. super long text. had new lines \n\n. What is going on here?"
+        tv.font = UIFont.systemFont(ofSize: 14)
+        tv.textColor = .black
+        tv.backgroundColor = .yellow
+        tv.isScrollEnabled = false
+        return tv
     }()
     
     private let feedImage: UIImageView = {
@@ -122,7 +132,7 @@ class FeedCell: UICollectionViewCell {
         
         let yellowView = UIView()
         yellowView.backgroundColor = .yellow
-        let sv = UIStackView(arrangedSubviews: [profileStackView, descriptionLabel, feedImage, summaryLabel, feedActionStackView])
+        let sv = UIStackView(arrangedSubviews: [profileStackView, descriptionTextView, feedImage, summaryLabel, feedActionStackView])
         sv.axis = NSLayoutConstraint.Axis.vertical
         return sv
     }()
@@ -160,10 +170,14 @@ class FeedCell: UICollectionViewCell {
         profileImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
         profileImageView.widthAnchor.constraint(equalTo: profileImageView.heightAnchor, multiplier: 1).isActive = true
         
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
 //        descriptionLabel.leadingAnchor.constraint(equalTo: cellStackView.leadingAnchor, constant: 0).isActive = true
 //        descriptionLabel.trailingAnchor.constraint(equalTo: cellStackView.trailingAnchor, constant: 0).isActive = true
-        descriptionLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        // descriptionTextView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        feedImage.translatesAutoresizingMaskIntoConstraints = false
+        feedImage.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
         
         summaryLabel.translatesAutoresizingMaskIntoConstraints = false
         summaryLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
