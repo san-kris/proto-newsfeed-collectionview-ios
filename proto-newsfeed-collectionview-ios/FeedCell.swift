@@ -9,6 +9,8 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
+    var delegate: NewsFeedViewController?
+    
     var post: Post? {
         didSet{
             print("Post was set")
@@ -79,12 +81,24 @@ class FeedCell: UICollectionViewCell {
         return tv
     }()
     
-    private let feedImage: UIImageView = {
+    // Variable needs to be lazy because we are using self object which may not be available when class is instantiated
+    lazy private var feedImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "Background-Euro"))
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
+        iv.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        iv.addGestureRecognizer(tapGesture)
         return iv
     }()
+    
+    @objc private func handleTap(gesture: UITapGestureRecognizer){
+        print("Feed Image Tapped")
+        guard let delegate else {return}
+        if let iv =  gesture.view as? UIImageView{
+            delegate.showImgaeFullScreen(imageView: iv)
+        }
+    }
     
     let summaryLabel: UILabel = {
         let label = UILabel()
@@ -148,7 +162,6 @@ class FeedCell: UICollectionViewCell {
         
     func setupView() -> Void {
         addSubview(cellStackView)
-
         setupCellLayout()
         
     }

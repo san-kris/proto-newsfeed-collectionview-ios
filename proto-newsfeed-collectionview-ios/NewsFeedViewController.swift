@@ -51,6 +51,7 @@ class NewsFeedViewController: UICollectionViewController, UICollectionViewDelega
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! FeedCell
         cell.post = posts[indexPath.row]
+        cell.delegate = self
         cell.setupView()
         return cell
         
@@ -73,6 +74,70 @@ class NewsFeedViewController: UICollectionViewController, UICollectionViewDelega
         super.viewWillTransition(to: size, with: coordinator)
         collectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    var zoomView: UIImageView?
+    var blackBackgroundView: UIView?
+    var feedImageSuperviewRect: CGRect?
 
+    func showImgaeFullScreen(imageView: UIImageView) -> Void {
+        
+        if let convertFrame = imageView.superview?.convert(imageView.frame, to: nil){
+            feedImageSuperviewRect = convertFrame
+            
+            // setup Zoom View
+            zoomView = UIImageView()
+            guard let zoomView else {return}
+            zoomView.frame = convertFrame
+            zoomView.image = imageView.image
+            zoomView.contentMode = .scaleAspectFill
+            zoomView.clipsToBounds = true
+            view.addSubview(zoomView)
+            
+            if let window = UIApplication.shared.connectedScenes.compactMap({($0 as? UIWindowScene)?.keyWindow}).first {
+                blackBackgroundView = UIView()
+                guard let blackBackgroundView else {return}
+                blackBackgroundView.frame = window.frame
+                blackBackgroundView.backgroundColor = .black
+                blackBackgroundView.alpha = 0
+                window.addSubview(blackBackgroundView)
+                window.addSubview(zoomView)
+                
+                UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseOut) {
+                    // find the acpect ratio of the original frame
+                    let aspectRatio = convertFrame.height / convertFrame.width
+                    // calculate the new height
+                    let newHeight = aspectRatio * window.frame.width
+                    
+                    let newY = (window.frame.height / 2) - (zoomView.frame.height / 2)
+                    
+                    zoomView.frame = CGRect(x: 0, y: newY, width: window.frame.width, height: newHeight)
+                    
+                    blackBackgroundView.alpha = 1
+                } completion: { (didComplete) in
+                    print("Zoom In Animation completed")
+                    zoomView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleTapFullScreenImage)))
+                    zoomView.isUserInteractionEnabled = true
+                }
+
+            }
+            
+            
+        }
+    }
+    
+    @objc func handleTapFullScreenImage(gesture: UITapGestureRecognizer) -> Void {
+        print("Animation func")
+        guard let feedImageSuperviewRect else {return}
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
+            self.zoomView?.frame = feedImageSuperviewRect
+            self.blackBackgroundView?.alpha = 0
+        } completion: { (didComplete) in
+            print("Zoom Out Animation Completed")
+            self.zoomView?.removeFromSuperview()
+            self.blackBackgroundView?.removeFromSuperview()
+        }
+
+    }
 
 }

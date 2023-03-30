@@ -31,7 +31,7 @@ class FeedTabBarController: UITabBarController {
     // delegate method that is called when
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
-        print("Tabbar item clicked: \(item.title) index: \(self.selectedIndex)")
+        print("Tabbar item clicked: \(item.title ?? "No Title") index: \(self.selectedIndex)")
     }
 
 }
