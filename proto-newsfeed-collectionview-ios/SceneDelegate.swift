@@ -19,7 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController =  UINavigationController(rootViewController: NewsFeedViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        window?.rootViewController =  FeedTabBarController()
+        
+        // change the navigation bar tint color
+        UINavigationBar.appearance().barTintColor = UIColor.green
+        // chnage the tint color of tabbar icon
+        UITabBar.appearance().tintColor = .darkGray
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -15,6 +15,7 @@
 		AA36335629D32F13004E01C5 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36335529D32F13004E01C5 /* NewsFeedViewController.swift */; };
 		AA36335829D33700004E01C5 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36335729D33700004E01C5 /* FeedCell.swift */; };
 		AA36335A29D4B908004E01C5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36335929D4B908004E01C5 /* Post.swift */; };
+		AA36335C29D5AA2E004E01C5 /* FeedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36335B29D5AA2E004E01C5 /* FeedTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		AA36335529D32F13004E01C5 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		AA36335729D33700004E01C5 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		AA36335929D4B908004E01C5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		AA36335B29D5AA2E004E01C5 /* FeedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				AA36334F29D32DBC004E01C5 /* Info.plist */,
 				AA36335729D33700004E01C5 /* FeedCell.swift */,
 				AA36335929D4B908004E01C5 /* Post.swift */,
+				AA36335B29D5AA2E004E01C5 /* FeedTabBarController.swift */,
 			);
 			path = "proto-newsfeed-collectionview-ios";
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA36334229D32DBA004E01C5 /* AppDelegate.swift in Sources */,
+				AA36335C29D5AA2E004E01C5 /* FeedTabBarController.swift in Sources */,
 				AA36335829D33700004E01C5 /* FeedCell.swift in Sources */,
 				AA36334429D32DBA004E01C5 /* SceneDelegate.swift in Sources */,
 				AA36335629D32F13004E01C5 /* NewsFeedViewController.swift in Sources */,
